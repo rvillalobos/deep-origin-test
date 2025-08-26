@@ -10,6 +10,7 @@ describe('DummyJSON Products API - Organized Tests', () => {
     cy.request(PRODUCTS_ENDPOINT.list).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body.products).to.be.an('array');
+      expect(response.duration).to.be.lessThan(1000);
       const first: Product = response.body.products[0];
       expect(first).to.have.property('id');
       expect(first).to.have.property('title');
@@ -21,6 +22,7 @@ describe('DummyJSON Products API - Organized Tests', () => {
       expect(response.status).to.eq(200);
       expect(response.body.id).to.eq(1);
       expect(response.body.title).to.be.a('string');
+      expect(response.duration).to.be.lessThan(200);
     });
   });
 
